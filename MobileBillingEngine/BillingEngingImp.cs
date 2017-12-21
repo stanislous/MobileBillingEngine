@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MobileBillingEngine
 {
-    interface BillingEngingImp
+    public interface BillingEngingImp
     {
     }
 }

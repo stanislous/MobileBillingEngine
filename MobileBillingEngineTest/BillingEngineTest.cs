@@ -1,18 +1,18 @@
 ﻿using System;
 using NUnit.Framework;
-using 
+using MobileBillingEngine;
 
 namespace MobileBillingEngineTest
 {
     [TestFixture]
     public class BillingEngineTest
     {
-        private BillingEngineImp _sut;
+        private BillingEngingImp _sut;
 
         [SetUp]
         public void Setup()
         {
-            _sut = new NumberToWords();
+            _sut = new BillingEngine();
         }
     }
 }
