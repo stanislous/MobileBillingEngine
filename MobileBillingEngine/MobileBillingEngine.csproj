@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BillInformation.cs" />
     <Compile Include="BillingEngine.cs" />
     <Compile Include="BillingEngingImp.cs" />
     <Compile Include="CallDetailRecords.cs" />
     <Compile Include="CallDetailRecordsImp.cs" />
+    <Compile Include="CustomerDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
