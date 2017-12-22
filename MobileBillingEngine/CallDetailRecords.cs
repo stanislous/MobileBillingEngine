@@ -15,18 +15,33 @@ namespace MobileBillingEngine
         private int duration_in_sec;
 
         public void setCallDuration(int duration_in_sec)
-        {
+        {  
             this.duration_in_sec = duration_in_sec;
         }
 
         public void setCallingParty(string caller_phone_number)
         {
-            this.caller_phone_number = caller_phone_number;
+            if (caller_phone_number.Length != 11)
+            {
+                throw new ArgumentOutOfRangeException(nameof(caller_phone_number), "Invalid Number.");
+            }
+            else
+            {
+                this.caller_phone_number = caller_phone_number;
+            }
         }
 
         public void setRecievingParty(string reciever_phone_number)
         {
-            this.reciever_phone_number = reciever_phone_number;
+            
+            if (caller_phone_number.Length != 11)
+            {
+                throw new ArgumentOutOfRangeException(nameof(caller_phone_number), "Invalid Number.");
+            }
+            else
+            {
+                this.reciever_phone_number = reciever_phone_number;
+            }
         }
 
         public void setStartingTime(DateTime date_and_time)
@@ -53,6 +68,7 @@ namespace MobileBillingEngine
         {
             return date_and_time;
         }
+
 
         
     }
