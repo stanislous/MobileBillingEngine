@@ -42,5 +42,15 @@ namespace MobileBillingEngine
             }
             return i;
         }
+
+        public void isLocalOrLongDistance()
+        {
+            
+        }
+
+        public void isPeakOrOffPeak()
+        {
+
+        }
     }
 }

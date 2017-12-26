@@ -12,5 +12,8 @@ namespace MobileBillingEngine
         int generateBills();
         void recordCustomerDetails(CustomerDetails cus_details);
         void recordCallDetails(CallDetailRecordsImp cdr_details);
+        void isLocalOrLongDistance();
+        void isPeakOrOffPeak();
+
     }
 }
