@@ -13,51 +13,32 @@ namespace MobileBillingEngineTest
         [SetUp]
         public void Setup()
         {
-            bengine_sut = new BillingEngine();
+            //bengine_sut = new BillingEngine();
             cdr_sut = new CallDetailRecords();
         }
         [Test]
-        public void SetRecievingPartyNumber_something_ReturnSameDetails()
+        public void SetDuration_AsANegativeNumber_ThrowExceptions()
         {
             //arrange
-            var expected = "071-123456";
-            cdr_sut.setRecievingParty(expected);
+            var expected = -120;
 
-            //act
-            var result = cdr_sut.getRecievingParty();
-
-            //assert
-            Assert.AreEqual(expected, result, "Should return same phone number.");
+            //act & assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => cdr_sut.setCallDuration(expected));
         }
         [Test]
-        public void SetStartingTimeAndDuration_something_ReturnSameDetails()
+        public void SetNegastiveCallerPhoneNumber_AccessCatchBlock_ThrowException()
         {
             //arrange
-            var expected_date_time = new DateTime(2017, 3, 24, 8, 15, 0);
-            var expected_call_duration = 120;
-            cdr_sut.setStartingTime(expected_date_time);
-            cdr_sut.setCallDuration(expected_call_duration);
-
-            //act
-            var result_date_time = cdr_sut.getStartingTime();
-            var result_call_duration = cdr_sut.getCallDuration();
-
-            //assert
-            Assert.AreEqual(expected_date_time, result_date_time, "Should return same date time.");
-            Assert.AreEqual(expected_call_duration,result_call_duration, "Should return same call duration.");
+            var expected = -0711234506; // Minus Number
+            //act & assert
+            Assert.Throws<ArgumentOutOfRangeException>(() => cdr_sut.setCallingParty(expected));
         }
         [Test]
         public void SetInvalidCallerPhoneNumber_AccessCatchBlock_ThrowException()
         {
             //arrange
-            var expected ="071-12304506"; // Wrong Length
-            cdr_sut.setRecievingParty(expected);
-
-            //act
-            var result = cdr_sut.getRecievingParty();
-
-            //assert
-            Assert.AreEqual(expected, result, "Should return same phone number.");
+            var expected = 71912034506; // Invalid Number
+            //act & assert
             Assert.Throws<ArgumentOutOfRangeException>(() => cdr_sut.setCallingParty(expected));
         }
     }

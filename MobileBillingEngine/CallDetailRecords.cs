@@ -9,39 +9,39 @@ namespace MobileBillingEngine
     public class CallDetailRecords : CallDetailRecordsImp
     {
 
-        private string caller_phone_number;
-        private string reciever_phone_number;
+        private double caller_phone_number;
+        private double reciever_phone_number;
         private DateTime date_and_time;
         private int duration_in_sec;
 
         public void setCallDuration(int duration_in_sec)
-        {  
-            this.duration_in_sec = duration_in_sec;
-        }
-
-        public void setCallingParty(string caller_phone_number)
         {
-            if (caller_phone_number.Length != 11)
+            if (duration_in_sec < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(caller_phone_number), "Invalid Number.");
+                throw new ArgumentOutOfRangeException(nameof(duration_in_sec), "Time must be a positive number.");
             }
             else
             {
-                this.caller_phone_number = caller_phone_number;
+                this.duration_in_sec = duration_in_sec;
             }
         }
 
-        public void setRecievingParty(string reciever_phone_number)
+        public void setCallingParty(double caller_phone_number)
         {
-            
-            if (caller_phone_number.Length != 11)
+            if (caller_phone_number < 0 || caller_phone_number.ToString().Length > 10)
             {
                 throw new ArgumentOutOfRangeException(nameof(caller_phone_number), "Invalid Number.");
             }
-            else
+            else  this.caller_phone_number = caller_phone_number;  
+        }
+
+        public void setRecievingParty(double reciever_phone_number)
+        {
+            if (reciever_phone_number < 0 )
             {
-                this.reciever_phone_number = reciever_phone_number;
+                throw new ArgumentOutOfRangeException(nameof(reciever_phone_number), "Invalid Number.");
             }
+            else  this.reciever_phone_number = reciever_phone_number;   
         }
 
         public void setStartingTime(DateTime date_and_time)
@@ -54,12 +54,12 @@ namespace MobileBillingEngine
             return duration_in_sec;
         }
 
-        public string getCallingParty()
+        public double getCallingParty()
         {
             return caller_phone_number;
         }
 
-        public string getRecievingParty()
+        public double getRecievingParty()
         {
             return reciever_phone_number;
         }
