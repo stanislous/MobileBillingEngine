@@ -9,8 +9,7 @@ namespace MobileBillingEngine
     {
         static void Main(string[] args)
         {
-            BillingEngine c = new BillingEngine();
-            c.generateBills();
+            
         }
     }
 }

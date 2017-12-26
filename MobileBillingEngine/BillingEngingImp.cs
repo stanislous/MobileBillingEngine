@@ -9,6 +9,8 @@ namespace MobileBillingEngine
 {
     public interface BillingEngingImp
     {
-        string generateBills(CustomerDetails customer_details, CallDetailRecords cdr_sut);
+        int generateBills();
+        void recordCustomerDetails(CustomerDetails cus_details);
+        void recordCallDetails(CallDetailRecordsImp cdr_details);
     }
 }

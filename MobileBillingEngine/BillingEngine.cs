@@ -10,17 +10,37 @@ namespace MobileBillingEngine
     public class BillingEngine : BillingEngingImp
     {
 
-        Dictionary<string, CustomerDetails> customerDetailsMap = new Dictionary<string, CustomerDetails>();
-        Dictionary<string, CallDetailRecords> callDetailsRecordMap = new Dictionary<string, CallDetailRecords>();
+        Dictionary<int, CustomerDetails> customerDetailsMap = new Dictionary<int, CustomerDetails>();
+        Dictionary<int, CallDetailRecordsImp> callDetailsRecordMap = new Dictionary<int, CallDetailRecordsImp>();
 
-        public string generateBills(CustomerDetails customer_details, CallDetailRecords cd_record)
+        static int unique_customer = 0;
+        static int unique_call_details = 0;
+
+        public void recordCustomerDetails(CustomerDetails cus_details)
         {
+            customerDetailsMap.Add(unique_customer, cus_details);
+            unique_customer++;
+        }
+        public void recordCallDetails(CallDetailRecordsImp cdr_details)
+        {
+            callDetailsRecordMap.Add(unique_call_details, cdr_details);
+            unique_call_details++;
+        }
 
-            
-
-            
-
-            return "fv";
+        public int generateBills()
+        {
+            int i = 0;
+            foreach (var customer in customerDetailsMap)
+            {
+                foreach (var record in callDetailsRecordMap)
+                {
+                    if (customer.Value.phone_number == record.Value.getCallingParty())
+                    {
+                        i++;
+                    }
+                }
+            }
+            return i;
         }
     }
 }
