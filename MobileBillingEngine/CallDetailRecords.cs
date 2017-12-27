@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MobileBillingEngine
 {
-    public class CallDetailRecords : CallDetailRecordsImp
+    public class CallDetailRecords
     {
 
         private double caller_phone_number;

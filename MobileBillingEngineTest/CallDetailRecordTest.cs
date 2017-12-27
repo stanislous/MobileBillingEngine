@@ -8,7 +8,7 @@ namespace MobileBillingEngineTest
     public class CallDetailRecordTest
     {
         //private BillingEngingImp bengine_sut;
-        private CallDetailRecordsImp cdr_sut;
+        private CallDetailRecords cdr_sut;
 
         [SetUp]
         public void Setup()

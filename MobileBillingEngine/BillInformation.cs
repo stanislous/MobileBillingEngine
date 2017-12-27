@@ -27,10 +27,12 @@ namespace MobileBillingEngine
             this.tax = tax;
             this.rental = rental;
             this.bill_amount = bill_amount;
+
+            Console.WriteLine(ToString());
         }
         public override string ToString()
         {
-            return String.Format("{0}  0{1}", customer_name, phone_number);
+            return String.Format(" Customer Name: {0} \n Phone Number: 0{1} \n Billing Address:{2} \n Totoal Call Charge: {3} \n Total Discount: {4} \n Tax: {5} \n Rental: {6} \n Bill Amount: {7} \n", customer_name, phone_number, billing_address, total_call_charge, total_discount, tax, rental, bill_amount);
         }
 
         /*  public string Customer_name
