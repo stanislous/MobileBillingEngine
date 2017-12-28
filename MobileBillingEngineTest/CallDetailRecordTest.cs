@@ -41,6 +41,17 @@ namespace MobileBillingEngineTest
             //act & assert
             Assert.Throws<ArgumentOutOfRangeException>(() => cdr_sut.setCallingParty(expected));
         }
+        [Test]
+        public void SetTimeDurationInSeconds_RoundToMinutes_ReturnNewSeconds()
+        {
+            //arrange
+            var expected = 120; // Invalid Number
+            //act 
+            cdr_sut.setCallDuration(80);
+            var result = cdr_sut.getCallDuration();
+            //assert
+            Assert.AreEqual(expected,result);
+        }
     }
 }
             

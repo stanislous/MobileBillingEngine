@@ -1,26 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MobileBillingEngine
 {
     public class CallDetailRecords
     {
-
         private double caller_phone_number;
         private double reciever_phone_number;
         private DateTime date_and_time;
         private int duration_in_sec;
-
-        /*public CallDetailRecords(double caller_phone_number, double reciever_phone_number, DateTime date_and_time, int duration_in_sec)
-        {
-            this.caller_phone_number = caller_phone_number;
-            this.reciever_phone_number = reciever_phone_number;
-            this.date_and_time = date_and_time;
-            this.duration_in_sec = duration_in_sec;
-        }*/
 
         public void setCallDuration(int duration_in_sec)
         {
@@ -30,7 +17,11 @@ namespace MobileBillingEngine
             }
             else
             {
-                this.duration_in_sec = duration_in_sec;
+                if (duration_in_sec % 60 > 0)
+                {
+                    duration_in_sec += 60 - (duration_in_sec % 60);
+                }
+                this. duration_in_sec = duration_in_sec;
             }
         }
 

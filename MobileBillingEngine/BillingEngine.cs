@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MobileBillingEngine 
 {
     public class BillingEngine : BillingEngingImp
     {
-        Dictionary<int, CustomerDetails> customerDetailsMap = new Dictionary<int, CustomerDetails>();
+        Dictionary<double, CustomerDetails> customerDetailsMap = new Dictionary<double, CustomerDetails>();
         Dictionary<int, CallDetailRecords> callDetailsRecordMap = new Dictionary<int, CallDetailRecords>();
 
-        static int unique_customer = 0;
+        //static int unique_customer = 0;
         static int unique_call_details = 0;
 
         public void recordCustomerDetails(CustomerDetails cus_details)
         {
-            customerDetailsMap.Add(unique_customer, cus_details);
-            unique_customer++;
+            if (customerDetailsMap.ContainsKey(cus_details.phone_number));
+            else customerDetailsMap.Add(cus_details.phone_number, cus_details);
         }
         public void recordCallDetails(CallDetailRecords cdr_details)
         {
@@ -26,11 +22,12 @@ namespace MobileBillingEngine
             unique_call_details++;
         }
 
-        public int generateBills()
+        public Dictionary<string, double> generateBills()
         {
-            int total_payment = 0;
-            int tax = 0;
-            int discount = 0;
+            double total_payment = 0;
+            double tax = 0;
+            double discount = 0;
+            Dictionary<string, double> bill_set = new Dictionary<string, double>();
 
             foreach (var customer in customerDetailsMap)
             {
@@ -41,12 +38,14 @@ namespace MobileBillingEngine
                         total_payment += isLocalOrLongDistance(record.Value);
                         tax = totalTax(total_payment);
                         discount = totalDiscount(total_payment);
-                        total_payment += tax + discount;
+                        total_payment += tax + discount + 100;
                     }
                 }
-               //BillInformation bill_info = new BillInformation(customer.Value.full_name, customer.Value.phone_number, customer.Value.billing_address, total_payment, discount, tax, 75, 23);
+                bill_set.Add("0"+ customer.Value.phone_number.ToString(), total_payment);
+                BillInformation bill_info = new BillInformation(customer.Value.full_name, customer.Value.phone_number, customer.Value.billing_address, total_payment-tax-discount-100, discount, tax, 100, total_payment);
+                total_payment = 0;
             }
-            return total_payment;
+            return bill_set;
         }
 
         public int isLocalOrLongDistance(CallDetailRecords call_details)
@@ -58,63 +57,63 @@ namespace MobileBillingEngine
 
             if ((int)originate_number / 10000000 == (int)recieve_number / 10000000) //local call
             {
-                if(isPeakOrOffPeak(call_details.getStartingTime(), call_details.getCallDuration()) == "Peak")
-                {
-                    payment += 3 * call_details.getCallDuration() / 60;
-                }
-                else
-                {
-                    payment += 2 * call_details.getCallDuration() / 60;
-                }
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration());
             }
             else   //long distance call
             {
-                if(isPeakOrOffPeak(call_details.getStartingTime(), call_details.getCallDuration()) == "Peak")
-                {
-                    payment += 5 * call_details.getCallDuration() / 60;
-                }
-                else
-                {
-                    payment += 4 * call_details.getCallDuration() / 60;
-                } 
+                payment += isPeakForLongDistanceCalls(call_details.getStartingTime(), call_details.getCallDuration());
             }
             return payment;
         }
 
-        public string isPeakOrOffPeak(DateTime start_time, int time_duration)
+        public int isPeakForLocalCalls(DateTime start_time, int time_duration)
         {
-            string is_peak = "";
-
             DateTime end_time = start_time.AddSeconds(time_duration);
-            
-            if (start_time.Hour >= 8 && end_time.Hour < 20) //Peak hours
+            int call_charge = 0;
+
+            while (start_time != end_time)
             {
-                is_peak = "Peak";    
+                if (start_time.Hour >= 8 && start_time.Hour < 20)
+                {
+                    call_charge += 3;  //Peak for Local calls
+                }
+                else
+                {
+                    call_charge += 2;    //Off Peak for Local calls
+                }
+                start_time = start_time.AddMinutes(1);
             }
-            else if (start_time.Hour >= 0 && end_time.Hour < 8 || start_time.Hour >= 20 && end_time.Hour <= 24) //Off Peak Hours
-            {
-                is_peak = "OffPeak";
-            }
-            //else if ()
-            // {
-            //  }
-            return is_peak;
+            return call_charge;
         }
 
-        public int totalTax(int total_payment)
+        public int isPeakForLongDistanceCalls(DateTime start_time, int time_duration)
+        {
+            DateTime end_time = start_time.AddSeconds(time_duration);
+            int call_charge = 0;
+
+            while (start_time != end_time)
+            {
+                if (start_time.Hour >= 8 && start_time.Hour < 20)
+                {
+                    call_charge += 5;  //Peak for Long Distance calls
+                }
+                else
+                {
+                    call_charge += 4;    //Off Peak for Long Distance calls
+                }
+                start_time = start_time.AddMinutes(1);
+            }
+            return call_charge;
+        }
+
+        public double totalTax(double total_payment)
         {
             return total_payment/5;    //20% tax
-        }
+        }  
 
-        public int monthlyRental(DateTime datetime)
+        public double totalDiscount(double total_payment)
         {
-            int rental = 0;
-            return rental;
-        }   
-
-        public int totalDiscount(int total_payment)
-        {
-            return total_payment / 20; //5% discount
+            return /*total_payment / 20*/0; //5% discount
         }
     }
 }
