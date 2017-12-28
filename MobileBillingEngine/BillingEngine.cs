@@ -54,19 +54,21 @@ namespace MobileBillingEngine
             double recieve_number = call_details.getRecievingParty();
 
             int payment = 0;
+            bool its_local = true;
 
             if ((int)originate_number / 10000000 == (int)recieve_number / 10000000) //local call
             {
-                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration());
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), its_local);
             }
             else   //long distance call
             {
-                payment += isPeakForLongDistanceCalls(call_details.getStartingTime(), call_details.getCallDuration());
+                its_local = false;
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), its_local);
             }
             return payment;
         }
 
-        public int isPeakForLocalCalls(DateTime start_time, int time_duration)
+        public int isPeakForLocalCalls(DateTime start_time, int time_duration, bool its_local)
         {
             DateTime end_time = start_time.AddSeconds(time_duration);
             int call_charge = 0;
@@ -75,45 +77,21 @@ namespace MobileBillingEngine
             {
                 if (start_time.Hour >= 8 && start_time.Hour < 20)
                 {
-                    call_charge += 3;  //Peak for Local calls
+                    if (its_local == true) call_charge += 3;  //Peak for Local calls
+                    else call_charge += 5;        //Peak for Long Distance calls
                 }
                 else
                 {
-                    call_charge += 2;    //Off Peak for Local calls
+                    if (its_local == true) call_charge += 2;    //Off Peak for Local calls
+                    else call_charge += 4;        //Off Peak for Long Distance calls
                 }
                 start_time = start_time.AddMinutes(1);
             }
             return call_charge;
         }
 
-        public int isPeakForLongDistanceCalls(DateTime start_time, int time_duration)
-        {
-            DateTime end_time = start_time.AddSeconds(time_duration);
-            int call_charge = 0;
+        public double totalTax(double total_payment) { return total_payment/5; } //20% tax
 
-            while (start_time != end_time)
-            {
-                if (start_time.Hour >= 8 && start_time.Hour < 20)
-                {
-                    call_charge += 5;  //Peak for Long Distance calls
-                }
-                else
-                {
-                    call_charge += 4;    //Off Peak for Long Distance calls
-                }
-                start_time = start_time.AddMinutes(1);
-            }
-            return call_charge;
-        }
-
-        public double totalTax(double total_payment)
-        {
-            return total_payment/5;    //20% tax
-        }  
-
-        public double totalDiscount(double total_payment)
-        {
-            return /*total_payment / 20*/0; //5% discount
-        }
+        public double totalDiscount(double total_payment) { return /*total_payment / 20*/0; }//5% discount       
     }
 }

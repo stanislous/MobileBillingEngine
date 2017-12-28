@@ -66,9 +66,6 @@ namespace MobileBillingEngine
         public DateTime getStartingTime()
         {
             return date_and_time;
-        }
-
-    
-        
+        }       
     }
 }
