@@ -8,6 +8,7 @@ namespace MobileBillingEngine
         private double reciever_phone_number;
         private DateTime date_and_time;
         private int duration_in_sec;
+        private string billing_type;
 
         public void setCallDuration(int duration_in_sec)
         {
@@ -48,6 +49,11 @@ namespace MobileBillingEngine
             this.date_and_time = date_and_time;
         }
 
+        public void setBillingType(string billing_type)
+        {
+            this.billing_type = billing_type;
+        }
+
         public int getCallDuration()
         {
             return duration_in_sec;
@@ -67,5 +73,10 @@ namespace MobileBillingEngine
         {
             return date_and_time;
         }       
+
+        public string getBillingType()
+        {
+            return billing_type;
+        }
     }
 }

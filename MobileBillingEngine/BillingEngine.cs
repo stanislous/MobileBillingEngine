@@ -36,7 +36,7 @@ namespace MobileBillingEngine
                     if (customer.Value.phone_number == record.Value.getCallingParty())
                     {
                         total_payment += isLocalOrLongDistance(record.Value);
-                        tax = totalTax(total_payment);
+                        tax = totalTax(total_payment+100);
                         discount = totalDiscount(total_payment);
                         total_payment += tax + discount + 100;
                     }
@@ -54,21 +54,25 @@ namespace MobileBillingEngine
             double recieve_number = call_details.getRecievingParty();
 
             int payment = 0;
-            bool its_local = true;
+            bool is_local = true;
+            bool is_per_minute;
+
+            if (call_details.getBillingType() == "per minute") is_per_minute = true;
+            else is_per_minute = false;
 
             if ((int)originate_number / 10000000 == (int)recieve_number / 10000000) //local call
             {
-                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), its_local);
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), is_local, is_per_minute);
             }
             else   //long distance call
             {
-                its_local = false;
-                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), its_local);
+                is_local = false;
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), is_local, is_per_minute);
             }
             return payment;
         }
 
-        public int isPeakForLocalCalls(DateTime start_time, int time_duration, bool its_local)
+        public int isPeakForLocalCalls(DateTime start_time, int time_duration, bool is_local, bool is_per_minute)
         {
             DateTime end_time = start_time.AddSeconds(time_duration);
             int call_charge = 0;
@@ -77,13 +81,17 @@ namespace MobileBillingEngine
             {
                 if (start_time.Hour >= 8 && start_time.Hour < 20)
                 {
-                    if (its_local == true) call_charge += 3;  //Peak for Local calls
-                    else call_charge += 5;        //Peak for Long Distance calls
+                    if (is_local == true && is_per_minute == true) call_charge += 3;  //Per Minute Peak for Local calls 
+                    else if (is_local == false && is_per_minute == true) call_charge += 5;  //Per Minute Peak for Long Distance calls
+                    else if (is_local == true && is_per_minute == false) call_charge += 4;  //Per Second Peak for Local calls
+                    else call_charge += 6;  //Per second Peak for Long Distance calls
                 }
                 else
                 {
-                    if (its_local == true) call_charge += 2;    //Off Peak for Local calls
-                    else call_charge += 4;        //Off Peak for Long Distance calls
+                    if (is_local == true && is_per_minute == true) call_charge += 2;    //Per Minute Off Peak for Local calls
+                    else if (is_local == false && is_per_minute == true) call_charge += 4;    //Per Minute Off Peak for Long Distance calls
+                    else if (is_local == true && is_per_minute == false) call_charge += 3;    //Per second Off Peak for Local calls
+                    else call_charge += 5;    //Per second Off Peak for Long Distance calls
                 }
                 start_time = start_time.AddMinutes(1);
             }
@@ -92,6 +100,6 @@ namespace MobileBillingEngine
 
         public double totalTax(double total_payment) { return total_payment/5; } //20% tax
 
-        public double totalDiscount(double total_payment) { return /*total_payment / 20*/0; }//5% discount       
+        public double totalDiscount(double total_payment) { return /*total_payment / 20*/0; }//0% discount       
     }
 }

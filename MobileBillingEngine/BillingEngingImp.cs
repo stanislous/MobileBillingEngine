@@ -11,9 +11,9 @@ namespace MobileBillingEngine
 
         void recordCallDetails(CallDetailRecords cdr_details);
 
-        //int isLocalOrLongDistance(CallDetailRecords call_details);
+        int isLocalOrLongDistance(CallDetailRecords call_details);
 
-        int isPeakForLocalCalls(DateTime start_time, int time_duration, bool its_local);
+        int isPeakForLocalCalls(DateTime start_time, int time_duration, bool its_local, bool is_per_minute);
 
         double totalTax(double total_payment);
 
