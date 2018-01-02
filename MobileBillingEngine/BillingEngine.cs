@@ -48,16 +48,16 @@ namespace MobileBillingEngine
             return bill_set;
         }
 
-        public int isLocalOrLongDistance(CallDetailRecords call_details)
+        public double isLocalOrLongDistance(CallDetailRecords call_details)
         {
             double originate_number = call_details.getCallingParty();
             double recieve_number = call_details.getRecievingParty();
 
-            int payment = 0;
+            double payment = 0;
             bool is_local = true;
             bool is_per_minute = false;
             int time_duration = call_details.getCallDuration();
-            int seconds = 0;
+            double seconds = 0;
 
             if (call_details.getBillingType() == "per minute") is_per_minute = true;
             if (call_details.getBillingType() == "per second" && call_details.getSeconds() != 0)
@@ -107,12 +107,12 @@ namespace MobileBillingEngine
             return call_charge;
         }
 
-        public int costForSeconds(DateTime start_time, int time_duration, bool is_local, int seconds)
+        public double costForSeconds(DateTime start_time, int time_duration, bool is_local, double seconds)
         {
-            DateTime end_time = start_time.AddSeconds(time_duration);
-            int charge_for_seconds = 0;
+            DateTime end_time = start_time.AddSeconds(time_duration + seconds);
+            double charge_for_seconds = 0;
 
-            if (start_time.Hour >= 8 && start_time.Hour < 20) // Peak Hours
+            if (end_time.Hour >= 8 && end_time.Hour < 20) // Peak Hours
             {
                 if (is_local == true) charge_for_seconds = (4 * seconds) / 60;
                 else charge_for_seconds = (6 * seconds) / 60;
