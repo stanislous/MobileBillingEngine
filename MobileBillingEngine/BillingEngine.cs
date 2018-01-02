@@ -55,19 +55,28 @@ namespace MobileBillingEngine
 
             int payment = 0;
             bool is_local = true;
-            bool is_per_minute;
+            bool is_per_minute = false;
+            int time_duration = call_details.getCallDuration();
+            int seconds = 0;
 
             if (call_details.getBillingType() == "per minute") is_per_minute = true;
-            else is_per_minute = false;
+            if (call_details.getBillingType() == "per second" && call_details.getSeconds() != 0)
+            {
+                is_per_minute = false;
+                time_duration -= 60;
+                seconds = call_details.getSeconds();
+            }
 
             if ((int)originate_number / 10000000 == (int)recieve_number / 10000000) //local call
             {
-                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), is_local, is_per_minute);
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), time_duration, is_local, is_per_minute);
+                payment += costForSeconds(call_details.getStartingTime(), time_duration, is_local, seconds);
             }
             else   //long distance call
             {
                 is_local = false;
-                payment += isPeakForLocalCalls(call_details.getStartingTime(), call_details.getCallDuration(), is_local, is_per_minute);
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), time_duration, is_local, is_per_minute);
+                payment += costForSeconds(call_details.getStartingTime(), time_duration, is_local, seconds);
             }
             return payment;
         }
@@ -79,14 +88,14 @@ namespace MobileBillingEngine
 
             while (start_time != end_time)
             {
-                if (start_time.Hour >= 8 && start_time.Hour < 20)
+                if (start_time.Hour >= 8 && start_time.Hour < 20) // Peak Hours
                 {
                     if (is_local == true && is_per_minute == true) call_charge += 3;  //Per Minute Peak for Local calls 
                     else if (is_local == false && is_per_minute == true) call_charge += 5;  //Per Minute Peak for Long Distance calls
                     else if (is_local == true && is_per_minute == false) call_charge += 4;  //Per Second Peak for Local calls
                     else call_charge += 6;  //Per second Peak for Long Distance calls
                 }
-                else
+                else  // Off Peak Hours
                 {
                     if (is_local == true && is_per_minute == true) call_charge += 2;    //Per Minute Off Peak for Local calls
                     else if (is_local == false && is_per_minute == true) call_charge += 4;    //Per Minute Off Peak for Long Distance calls
@@ -96,6 +105,24 @@ namespace MobileBillingEngine
                 start_time = start_time.AddMinutes(1);
             }
             return call_charge;
+        }
+
+        public int costForSeconds(DateTime start_time, int time_duration, bool is_local, int seconds)
+        {
+            DateTime end_time = start_time.AddSeconds(time_duration);
+            int charge_for_seconds = 0;
+
+            if (start_time.Hour >= 8 && start_time.Hour < 20) // Peak Hours
+            {
+                if (is_local == true) charge_for_seconds = (4 * seconds) / 60;
+                else charge_for_seconds = (6 * seconds) / 60;
+            }
+            else     // Off Peak Hours
+            {
+                if (is_local == true) charge_for_seconds = (3 * seconds) / 60;
+                else charge_for_seconds = (5 * seconds) / 60;
+            }
+            return charge_for_seconds;         
         }
 
         public double totalTax(double total_payment) { return total_payment/5; } //20% tax

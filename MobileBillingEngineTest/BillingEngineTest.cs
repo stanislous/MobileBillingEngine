@@ -142,7 +142,7 @@ namespace MobileBillingEngineTest
             cdr_sut_12.setCallingParty(0633082022);
             cdr_sut_12.setRecievingParty(0633082023);
             cdr_sut_12.setStartingTime(new DateTime(2017, 3, 23, 9, 30, 0));
-            cdr_sut_12.setCallDuration(180);
+            cdr_sut_12.setCallDuration(140);
             cdr_sut_12.setBillingType("per second");
 
             cdr_sut_13 = new CallDetailRecords();
@@ -321,7 +321,7 @@ namespace MobileBillingEngineTest
             //arrange
             bengine_sut.recordCustomerDetails(cusdetails_sut_11);
             bengine_sut.recordCallDetails(cdr_sut_12);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 134.4 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 130.8 } };
 
             //act 
             var result = bengine_sut.generateBills();
@@ -335,7 +335,7 @@ namespace MobileBillingEngineTest
             //arrange
             bengine_sut.recordCustomerDetails(cusdetails_sut_12);
             bengine_sut.recordCallDetails(cdr_sut_13);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 130.8 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 128.4 } };
 
             //act 
             var result = bengine_sut.generateBills();

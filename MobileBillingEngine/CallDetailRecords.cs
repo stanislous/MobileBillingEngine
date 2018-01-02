@@ -9,6 +9,7 @@ namespace MobileBillingEngine
         private DateTime date_and_time;
         private int duration_in_sec;
         private string billing_type;
+        private int seconds;
 
         public void setCallDuration(int duration_in_sec)
         {
@@ -18,11 +19,16 @@ namespace MobileBillingEngine
             }
             else
             {
+                if (duration_in_sec % 60 == 0) setSeconds(0);
+
                 if (duration_in_sec % 60 > 0)
                 {
+                    setSeconds(duration_in_sec % 60);
                     duration_in_sec += 60 - (duration_in_sec % 60);
                 }
+               
                 this. duration_in_sec = duration_in_sec;
+                
             }
         }
 
@@ -54,6 +60,11 @@ namespace MobileBillingEngine
             this.billing_type = billing_type;
         }
 
+        public void setSeconds(int seconds)
+        {
+            this.seconds = seconds;
+        }
+
         public int getCallDuration()
         {
             return duration_in_sec;
@@ -78,5 +89,10 @@ namespace MobileBillingEngine
         {
             return billing_type;
         }
+
+        public int getSeconds()
+        {
+            return seconds;
+        }        
     }
 }
