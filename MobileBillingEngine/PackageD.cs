@@ -46,9 +46,6 @@ namespace MobileBillingEngine
             return charge_for_seconds;
         }
 
-        public int monthlyRental()
-        {
-            return 300;
-        }
+        public override int monthlyRental() { return 300; }
     }
 }

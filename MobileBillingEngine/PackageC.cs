@@ -29,6 +29,6 @@ namespace MobileBillingEngine
         {
             return 0;
         }
-        public int monthlyRental() { return 300; }
+        public override int monthlyRental() { return 300; }
     }
 }

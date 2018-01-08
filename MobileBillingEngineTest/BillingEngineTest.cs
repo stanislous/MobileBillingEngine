@@ -38,6 +38,15 @@ namespace MobileBillingEngineTest
         private CustomerDetails cusdetails_sut_12;
         private CustomerDetails cusdetails_sut_13;
         private CustomerDetails cusdetails_sut_14;
+        private CustomerDetails cusdetails_sut_15;
+        private CustomerDetails cusdetails_sut_16;
+        private CustomerDetails cusdetails_sut_17;
+        private CustomerDetails cusdetails_sut_18;
+        private CustomerDetails cusdetails_sut_19;
+        private CustomerDetails cusdetails_sut_20;
+        private CustomerDetails cusdetails_sut_21;
+        private CustomerDetails cusdetails_sut_22;
+        private CustomerDetails cusdetails_sut_23;
 
         private PackageA package_a;
         private PackageB package_b;
@@ -172,9 +181,20 @@ namespace MobileBillingEngineTest
             cusdetails_sut_12 = new CustomerDetails("Nimal Perera", "Nimal Address", 0643082022, 12, new DateTime(2015, 2, 12, 9, 7, 0), "package B");
             cusdetails_sut_13 = new CustomerDetails("Srimal Perera", "Srimal Address", 0653082022, 13, new DateTime(2015, 2, 12, 9, 7, 0), "package B");
             cusdetails_sut_14 = new CustomerDetails("Sunil Perera", "Sunil Address", 0663082022, 14, new DateTime(2015, 2, 12, 9, 7, 0), "package B");
+
+            cusdetails_sut_15 = new CustomerDetails("Nadun Perera", "Nadun Address", 0763082022, 15, new DateTime(2015, 2, 12, 4, 7, 0), "package C");
+            cusdetails_sut_16 = new CustomerDetails("Hash Perera", "Hash Address", 0703082022, 16, new DateTime(2015, 2, 12, 4, 7, 0), "package C");
+            cusdetails_sut_17 = new CustomerDetails("Maduka Perera", "Maduka Address", 0603082022, 17, new DateTime(2015, 2, 12, 9, 7, 0), "package C");
+            cusdetails_sut_18 = new CustomerDetails("Samitha Perera", "Samitha Address", 0613082022, 18, new DateTime(2015, 2, 12, 9, 7, 0), "package C");
+            cusdetails_sut_19 = new CustomerDetails("Harini Perera", "Harini Address", 0623082022, 19, new DateTime(2015, 2, 12, 9, 7, 0), "package C");
+            cusdetails_sut_20 = new CustomerDetails("Sonali Perera", "Sonali Address", 0633082022, 20, new DateTime(2015, 2, 12, 9, 7, 0), "package D");
+            cusdetails_sut_21 = new CustomerDetails("Pipuni Perera", "Pipuni Address", 0643082022, 21, new DateTime(2015, 2, 12, 9, 7, 0), "package D");
+            cusdetails_sut_22 = new CustomerDetails("Nimali Perera", "Nimali Address", 0653082022, 22, new DateTime(2015, 2, 12, 9, 7, 0), "package D");
+            cusdetails_sut_23 = new CustomerDetails("Himali Perera", "Himali Address", 0663082022, 23, new DateTime(2015, 2, 12, 9, 7, 0), "package D");
+
         }
         [Test]
-        public void ForMultipleCallRecordsForOnePerson_CheckDetailsOfAPerticularCustomer_ReturntotoalPayment()
+        public void ForMultipleCallRecordsForOnePersonAtPackageA_CheckDetailsOfAPerticularCustomer_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_2);
@@ -190,7 +210,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerMinute_LocalPeakHoursCallsOnly_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LocalPeakHoursCallsOnly_ReturntotoalPayment()
            {
                //arrange
                package_a.recordCustomerDetails(cusdetails_sut_3);
@@ -204,7 +224,7 @@ namespace MobileBillingEngineTest
                Assert.AreEqual(expected, result);
            }
         [Test]
-        public void FindTheCallChargeForPerMinute_LocalOffPeakHoursCallOnly_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LocalOffPeakHoursCallOnly_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_4);
@@ -219,7 +239,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerMinute_LongDistancePeakHoursCallOnly_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LongDistancePeakHoursCallOnly_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_5);
@@ -233,7 +253,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerMinute_LongDistanceOffPeakHoursCallOnly_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LongDistanceOffPeakHoursCallOnly_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_6);
@@ -247,7 +267,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerMinute_LocalFromPeakToOffPeakHoursCall_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LocalFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_7);
@@ -261,7 +281,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerMinute_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_8);
@@ -275,7 +295,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerMinute_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_9);
@@ -289,7 +309,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerMinute_LongDistanceFromOffPeakToPeakHoursCall_ReturntotoalPayment()
+        public void FindTheCallChargeForPerMinuteAtPackageA_LongDistanceFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_10);
@@ -303,7 +323,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerSecond_LocalPeakHoursCallsOnly_ReturntotoalPayment()
+        public void FindTheCallChargeForPerSecondAtPackageB_LocalPeakHoursCallsOnly_ReturntotoalPayment()
         {
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_11);
@@ -317,7 +337,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerSecond_LocalOffPeakHoursCallsOnly_ReturntotoalPayment()
+        public void FindTheCallChargeForPerSecondAtPackageB_LocalOffPeakHoursCallsOnly_ReturntotoalPayment()
         {
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_12);
@@ -331,7 +351,7 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerSecond_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
+        public void FindTheCallChargeForPerSecondAtPackageB_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_13);
@@ -345,12 +365,138 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected, result);
         }
         [Test]
-        public void FindTheCallChargeForPerSecond_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
+        public void FindTheCallChargeForPerSecondAtPackageB_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_14);
             package_b.recordCallDetails(cdr_sut_15);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 257 } };
+
+            //act 
+            var result = package_b.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerMinuteAtPackageC_LongDistanceOffPeakHoursCallOnly_ReturntotoalPayment()
+        {
+            //arrange
+            package_a.recordCustomerDetails(cusdetails_sut_15);
+            package_a.recordCallDetails(cdr_sut_7);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 364.8 } };
+
+            //act 
+            var result = package_a.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerMinuteAtPackageC_LocalFromPeakToOffPeakHoursCall_ReturntotoalPayment()
+        {
+            //arrange
+            package_a.recordCustomerDetails(cusdetails_sut_16);
+            package_a.recordCallDetails(cdr_sut_8);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 396 } };
+
+            //act 
+            var result = package_a.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerMinuteAtPackageC_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
+        {
+            //arrange
+            package_a.recordCustomerDetails(cusdetails_sut_17);
+            package_a.recordCallDetails(cdr_sut_9);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 396 } };
+
+            //act 
+            var result = package_a.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerMinuteAtPackageC_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
+        {
+            //arrange
+            package_a.recordCustomerDetails(cusdetails_sut_18);
+            package_a.recordCallDetails(cdr_sut_10);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0613082022", 420 } };
+
+            //act 
+            var result = package_a.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerMinuteAtPackageC_LongDistanceFromOffPeakToPeakHoursCall_ReturntotoalPayment()
+        {
+            //arrange
+            package_a.recordCustomerDetails(cusdetails_sut_19);
+            package_a.recordCallDetails(cdr_sut_11);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0623082022", 420 } };
+
+            //act 
+            var result = package_a.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerSecondAtPackageD_LocalPeakHoursCallsOnly_ReturntotoalPayment()
+        {
+            //arrange
+            package_b.recordCustomerDetails(cusdetails_sut_20);
+            package_b.recordCallDetails(cdr_sut_12);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 369 } };
+
+            //act 
+            var result = package_b.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerSecondAtPackageD_LocalOffPeakHoursCallsOnly_ReturntotoalPayment()
+        {
+            //arrange
+            package_b.recordCustomerDetails(cusdetails_sut_21);
+            package_b.recordCallDetails(cdr_sut_13);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 365.6 } };
+
+            //act 
+            var result = package_b.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerSecondAtPackageD_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
+        {
+            //arrange
+            package_b.recordCustomerDetails(cusdetails_sut_22);
+            package_b.recordCallDetails(cdr_sut_14);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 423 } };
+
+            //act 
+            var result = package_b.generateBills();
+
+            //assert
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void FindTheCallChargeForPerSecondAtPackageD_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
+        {
+            //arrange
+            package_b.recordCustomerDetails(cusdetails_sut_23);
+            package_b.recordCallDetails(cdr_sut_15);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 472 } };
 
             //act 
             var result = package_b.generateBills();

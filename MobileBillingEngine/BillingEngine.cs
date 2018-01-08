@@ -27,7 +27,9 @@ namespace MobileBillingEngine
         public object packageHandler(string package_name)
         {
             if (package_name == "package A") return new PackageA();
-            else return new PackageB();
+            else if (package_name == "package B") return new PackageB();
+            else if (package_name == "package C") return new PackageC();
+            else return new PackageD();
         }
 
         public Dictionary<string, double> generateBills()
@@ -47,9 +49,9 @@ namespace MobileBillingEngine
                     if (customer.Value.phone_number == record.Value.getCallingParty()/* && customer.Value.package_name == record.Value.getPackage()*/)
                     {
                         total_payment += reference.isLocalOrLongDistance(record.Value);
-                        tax = totalTax(total_payment + 100);
+                        tax = totalTax(total_payment + reference.monthlyRental());
                         discount = totalDiscount(total_payment);
-                        total_payment += tax + discount + 100;
+                        total_payment += tax + discount + reference.monthlyRental();
                     }
                 }
                 bill_set.Add("0"+ customer.Value.phone_number.ToString(), total_payment);
@@ -142,7 +144,7 @@ namespace MobileBillingEngine
          }*/
 
 
-
+        public abstract int monthlyRental();
         public double totalTax(double total_payment) { return total_payment/5; } //20% tax
         public double totalDiscount(double total_payment) { return /*total_payment / 20*/0; }//0% discount       
     }
