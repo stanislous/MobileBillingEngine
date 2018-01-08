@@ -53,6 +53,4 @@ namespace MobileBillingEngineTest
             Assert.AreEqual(expected,result);
         }
     }
-}
-            
-            
+}        

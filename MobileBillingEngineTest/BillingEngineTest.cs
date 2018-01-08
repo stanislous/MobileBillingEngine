@@ -39,13 +39,14 @@ namespace MobileBillingEngineTest
         private CustomerDetails cusdetails_sut_13;
         private CustomerDetails cusdetails_sut_14;
 
-        private BillingEngingImp bengine_sut;
-        // private BillInformation binfo_sut;
+        private PackageA package_a;
+        private PackageB package_b;
 
         [SetUp]
         public void Setup()
         {
-            bengine_sut = new BillingEngine();
+            package_a = new PackageA();
+            package_b = new PackageB();
 
             ///////////////////////////Call Record Details//////////////////////////////
 
@@ -54,8 +55,7 @@ namespace MobileBillingEngineTest
             cdr_sut_1.setCallingParty(0713082022);
             cdr_sut_1.setRecievingParty(0333334184);
             cdr_sut_1.setStartingTime(new DateTime(2017, 3, 23, 10, 34, 0));
-            cdr_sut_1.setCallDuration(120);
-            cdr_sut_1.setBillingType("per minute");
+            cdr_sut_1.setCallDuration(120);           
 
             cdr_sut_2 = new CallDetailRecords();
             //cdr for 2
@@ -63,7 +63,6 @@ namespace MobileBillingEngineTest
             cdr_sut_2.setRecievingParty(0334334184);
             cdr_sut_2.setStartingTime(new DateTime(2017, 3, 23, 12, 34, 0));
             cdr_sut_2.setCallDuration(120);
-            cdr_sut_2.setBillingType("per minute");
 
             cdr_sut_3 = new CallDetailRecords();
             //cdr for 3
@@ -71,7 +70,7 @@ namespace MobileBillingEngineTest
             cdr_sut_3.setRecievingParty(0332334184);
             cdr_sut_3.setStartingTime(new DateTime(2017, 3, 23, 16, 34, 0));
             cdr_sut_3.setCallDuration(120);
-            cdr_sut_3.setBillingType("per minute");
+            
 
             cdr_sut_4 = new CallDetailRecords();
             //cdr for 4
@@ -79,7 +78,6 @@ namespace MobileBillingEngineTest
             cdr_sut_4.setRecievingParty(0733082043);
             cdr_sut_4.setStartingTime(new DateTime(2017, 3, 23, 15, 30, 0));
             cdr_sut_4.setCallDuration(80);
-            cdr_sut_4.setBillingType("per minute");
 
             cdr_sut_5 = new CallDetailRecords();
             //cdr for 5
@@ -87,7 +85,6 @@ namespace MobileBillingEngineTest
             cdr_sut_5.setRecievingParty(0743082022);
             cdr_sut_5.setStartingTime(new DateTime(2017, 3, 23, 3, 30, 0));
             cdr_sut_5.setCallDuration(180);
-            cdr_sut_5.setBillingType("per minute");
 
             cdr_sut_6 = new CallDetailRecords();
             //cdr for 6
@@ -95,7 +92,6 @@ namespace MobileBillingEngineTest
             cdr_sut_6.setRecievingParty(0332334184);
             cdr_sut_6.setStartingTime(new DateTime(2017, 3, 23, 15, 30, 0));
             cdr_sut_6.setCallDuration(120);
-            cdr_sut_6.setBillingType("per minute");
 
             cdr_sut_7 = new CallDetailRecords();
             //cdr for 7
@@ -103,7 +99,6 @@ namespace MobileBillingEngineTest
             cdr_sut_7.setRecievingParty(0331334184);
             cdr_sut_7.setStartingTime(new DateTime(2017, 3, 23, 5, 30, 0));
             cdr_sut_7.setCallDuration(120);
-            cdr_sut_7.setBillingType("per minute");
 
             cdr_sut_8 = new CallDetailRecords();
             //cdr for 8
@@ -111,7 +106,6 @@ namespace MobileBillingEngineTest
             cdr_sut_8.setRecievingParty(0703082029);
             cdr_sut_8.setStartingTime(new DateTime(2017, 3, 23, 19, 50, 0));
             cdr_sut_8.setCallDuration(20 * 60);
-            cdr_sut_8.setBillingType("per minute");
 
             cdr_sut_9 = new CallDetailRecords();
             //cdr for 9
@@ -119,7 +113,6 @@ namespace MobileBillingEngineTest
             cdr_sut_9.setRecievingParty(0603082021);
             cdr_sut_9.setStartingTime(new DateTime(2017, 3, 23, 7, 50, 0));
             cdr_sut_9.setCallDuration(20 * 60);
-            cdr_sut_9.setBillingType("per minute");
 
             cdr_sut_10 = new CallDetailRecords();
             //cdr for 10
@@ -127,7 +120,6 @@ namespace MobileBillingEngineTest
             cdr_sut_10.setRecievingParty(0333334184);
             cdr_sut_10.setStartingTime(new DateTime(2017, 3, 23, 19, 50, 0));
             cdr_sut_10.setCallDuration(20 * 60);
-            cdr_sut_10.setBillingType("per minute");
 
             cdr_sut_11 = new CallDetailRecords();
             //cdr for 11
@@ -135,7 +127,6 @@ namespace MobileBillingEngineTest
             cdr_sut_11.setRecievingParty(0333334184);
             cdr_sut_11.setStartingTime(new DateTime(2017, 3, 23, 7, 50, 0));
             cdr_sut_11.setCallDuration(20 * 60);
-            cdr_sut_11.setBillingType("per minute");
 
             cdr_sut_12 = new CallDetailRecords();
             //cdr for 12
@@ -143,7 +134,6 @@ namespace MobileBillingEngineTest
             cdr_sut_12.setRecievingParty(0633082023);
             cdr_sut_12.setStartingTime(new DateTime(2017, 3, 23, 9, 30, 0));
             cdr_sut_12.setCallDuration(150);
-            cdr_sut_12.setBillingType("per second");
 
             cdr_sut_13 = new CallDetailRecords();
             //cdr for 13
@@ -151,7 +141,6 @@ namespace MobileBillingEngineTest
             cdr_sut_13.setRecievingParty(0643082024);
             cdr_sut_13.setStartingTime(new DateTime(2017, 3, 23, 23, 30, 0));
             cdr_sut_13.setCallDuration(140);
-            cdr_sut_13.setBillingType("per second");
 
             cdr_sut_14 = new CallDetailRecords();
             //cdr for 14
@@ -159,7 +148,6 @@ namespace MobileBillingEngineTest
             cdr_sut_14.setRecievingParty(0653082024);
             cdr_sut_14.setStartingTime(new DateTime(2017, 3, 23, 7, 50, 0));
             cdr_sut_14.setCallDuration(1250);
-            cdr_sut_14.setBillingType("per second");
 
             cdr_sut_15 = new CallDetailRecords();
             //cdr for 15
@@ -167,7 +155,6 @@ namespace MobileBillingEngineTest
             cdr_sut_15.setRecievingParty(0333082024);
             cdr_sut_15.setStartingTime(new DateTime(2017, 3, 23, 19, 50, 0));
             cdr_sut_15.setCallDuration(1250);
-            cdr_sut_15.setBillingType("per second");
 
             ///////////////////////////////Customer Details////////////////////////////////
 
@@ -190,14 +177,14 @@ namespace MobileBillingEngineTest
         public void ForMultipleCallRecordsForOnePerson_CheckDetailsOfAPerticularCustomer_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_2);
-            bengine_sut.recordCallDetails(cdr_sut_1);
-            bengine_sut.recordCallDetails(cdr_sut_2);
-            bengine_sut.recordCallDetails(cdr_sut_3);
+            package_a.recordCustomerDetails(cusdetails_sut_2);
+            package_a.recordCallDetails(cdr_sut_1);
+            package_a.recordCallDetails(cdr_sut_2);
+            package_a.recordCallDetails(cdr_sut_3);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0723082022", 290.4 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -206,12 +193,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LocalPeakHoursCallsOnly_ReturntotoalPayment()
            {
                //arrange
-               bengine_sut.recordCustomerDetails(cusdetails_sut_3);
-               bengine_sut.recordCallDetails(cdr_sut_4);
+               package_a.recordCustomerDetails(cusdetails_sut_3);
+               package_a.recordCallDetails(cdr_sut_4);
                Dictionary<string, double> expected = new Dictionary<string, double>() { { "0733082022", 127.2 } };
                
                //act 
-               var result = bengine_sut.generateBills();
+               var result = package_a.generateBills();
 
                //assert
                Assert.AreEqual(expected, result);
@@ -220,13 +207,13 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LocalOffPeakHoursCallOnly_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_4);
-            bengine_sut.recordCallDetails(cdr_sut_5);
+            package_a.recordCustomerDetails(cusdetails_sut_4);
+            package_a.recordCallDetails(cdr_sut_5);
 
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0743082022", 127.2 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -235,12 +222,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LongDistancePeakHoursCallOnly_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_5);
-            bengine_sut.recordCallDetails(cdr_sut_6);
+            package_a.recordCustomerDetails(cusdetails_sut_5);
+            package_a.recordCallDetails(cdr_sut_6);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0753082022", 132 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -249,12 +236,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LongDistanceOffPeakHoursCallOnly_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_6);
-            bengine_sut.recordCallDetails(cdr_sut_7);
+            package_a.recordCustomerDetails(cusdetails_sut_6);
+            package_a.recordCallDetails(cdr_sut_7);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 129.6 } };
             
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -263,12 +250,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LocalFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_7);
-            bengine_sut.recordCallDetails(cdr_sut_8);
+            package_a.recordCustomerDetails(cusdetails_sut_7);
+            package_a.recordCallDetails(cdr_sut_8);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 180 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -277,12 +264,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_8);
-            bengine_sut.recordCallDetails(cdr_sut_9);
+            package_a.recordCustomerDetails(cusdetails_sut_8);
+            package_a.recordCallDetails(cdr_sut_9);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 180 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -291,12 +278,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_9);
-            bengine_sut.recordCallDetails(cdr_sut_10);
+            package_a.recordCustomerDetails(cusdetails_sut_9);
+            package_a.recordCallDetails(cdr_sut_10);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0613082022", 228 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -305,12 +292,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinute_LongDistanceFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_10);
-            bengine_sut.recordCallDetails(cdr_sut_11);
+            package_a.recordCustomerDetails(cusdetails_sut_10);
+            package_a.recordCallDetails(cdr_sut_11);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0623082022", 228 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_a.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -319,12 +306,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecond_LocalPeakHoursCallsOnly_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_11);
-            bengine_sut.recordCallDetails(cdr_sut_12);
+            package_b.recordCustomerDetails(cusdetails_sut_11);
+            package_b.recordCallDetails(cdr_sut_12);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 132 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_b.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -333,12 +320,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecond_LocalOffPeakHoursCallsOnly_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_12);
-            bengine_sut.recordCallDetails(cdr_sut_13);
+            package_b.recordCustomerDetails(cusdetails_sut_12);
+            package_b.recordCallDetails(cdr_sut_13);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 128.4 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_b.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -347,12 +334,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecond_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_13);
-            bengine_sut.recordCallDetails(cdr_sut_14);
+            package_b.recordCustomerDetails(cusdetails_sut_13);
+            package_b.recordCallDetails(cdr_sut_14);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 208 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_b.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -361,12 +348,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecond_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            bengine_sut.recordCustomerDetails(cusdetails_sut_14);
-            bengine_sut.recordCallDetails(cdr_sut_15);
+            package_b.recordCustomerDetails(cusdetails_sut_14);
+            package_b.recordCallDetails(cdr_sut_15);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 257 } };
 
             //act 
-            var result = bengine_sut.generateBills();
+            var result = package_b.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);

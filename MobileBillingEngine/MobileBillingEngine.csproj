@@ -50,6 +50,9 @@
     <Compile Include="CustomerDetails.cs" />
     <Compile Include="PackageA.cs" />
     <Compile Include="PackageB.cs" />
+    <Compile Include="PackageC.cs" />
+    <Compile Include="PackageD.cs" />
+    <Compile Include="PackageHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 
 namespace MobileBillingEngine
 {
-    public class PackageB : BillingEngine
+    class PackageD : BillingEngine
     {
         public override int isPeakForLocalCalls(DateTime start_time, int time_duration, bool is_local)
         {
@@ -14,13 +14,13 @@ namespace MobileBillingEngine
             {
                 if (start_time.Hour >= 8 && start_time.Hour < 20) // Peak Hours
                 {
-                    if (is_local == true) call_charge += 4;  // Peak for Local calls 
-                    else call_charge += 6;  // Peak for Long Distance calls
+                    if (is_local == true) call_charge += 3;  // Peak for Local calls 
+                    else call_charge += 5;  // Peak for Long Distance calls
                 }
                 else  // Off Peak Hours
                 {
-                    if (is_local == true) call_charge += 3;    // Off Peak for Local calls 
-                    else call_charge += 5;    // Off Peak for Long Distance calls
+                    if (is_local == true) call_charge += 2;    // Off Peak for Local calls 
+                    else call_charge += 4;    // Off Peak for Long Distance calls
                 }
                 start_time = start_time.AddMinutes(1);
             }
@@ -35,20 +35,20 @@ namespace MobileBillingEngine
 
             if (end_time.Hour >= 8 && end_time.Hour < 20) // Peak Hours
             {
-                if (is_local == true) charge_for_seconds = (4 * seconds) / 60;
-                else charge_for_seconds = (6 * seconds) / 60;
+                if (is_local == true) charge_for_seconds = (3 * seconds) / 60;
+                else charge_for_seconds = (5 * seconds) / 60;
             }
             else     // Off Peak Hours
             {
-                if (is_local == true) charge_for_seconds = (3 * seconds) / 60;
-                else charge_for_seconds = (5 * seconds) / 60;
+                if (is_local == true) charge_for_seconds = (2 * seconds) / 60;
+                else charge_for_seconds = (4 * seconds) / 60;
             }
             return charge_for_seconds;
         }
 
         public int monthlyRental()
         {
-            return 100;
+            return 300;
         }
     }
 }
