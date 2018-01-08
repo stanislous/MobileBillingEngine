@@ -13,7 +13,7 @@ namespace MobileBillingEngine
 
         double isLocalOrLongDistance(CallDetailRecords call_details);
 
-        int isPeakForLocalCalls(DateTime start_time, int time_duration, bool its_local, bool is_per_minute);
+        int isPeakForLocalCalls(DateTime start_time, int time_duration, bool its_local);
 
         double totalTax(double total_payment);
 

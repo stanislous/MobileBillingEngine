@@ -48,6 +48,8 @@
     <Compile Include="BillingEngingImp.cs" />
     <Compile Include="CallDetailRecords.cs" />
     <Compile Include="CustomerDetails.cs" />
+    <Compile Include="PackageA.cs" />
+    <Compile Include="PackageB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -171,20 +171,20 @@ namespace MobileBillingEngineTest
 
             ///////////////////////////////Customer Details////////////////////////////////
 
-            cusdetails_sut_1 = new CustomerDetails("Shehan Erange", "Shehan Address", 0713082022, 1, new DateTime(2015, 3, 22, 15, 0, 0));
-            cusdetails_sut_2 = new CustomerDetails("Menuka Nayanadipa", "Menuka Address", 0723082022, 2, new DateTime(2015, 3, 22, 6, 30, 0));
-            cusdetails_sut_3 = new CustomerDetails("Sachini Perera", "sachini Address", 0733082022, 3, new DateTime(2015, 3, 22, 23, 45, 0));
-            cusdetails_sut_4 = new CustomerDetails("Anuththara Perera", "Anuththara Address", 0743082022, 4, new DateTime(2015, 3, 22, 23, 45, 0));
-            cusdetails_sut_5 = new CustomerDetails("Oshiini Perera", "Oshini Address", 0753082022, 5, new DateTime(2015, 3, 22, 23, 45, 0));
-            cusdetails_sut_6 = new CustomerDetails("Sandun Perera", "Sandun Address", 0763082022, 6, new DateTime(2015, 3, 22, 23, 45, 0));
-            cusdetails_sut_7 = new CustomerDetails("Naduni Perera", "Naduni Address", 0703082022, 7, new DateTime(2015, 2, 12, 4, 7, 0));
-            cusdetails_sut_8 = new CustomerDetails("Hashini Perera", "Hashini Address", 0603082022, 8, new DateTime(2015, 2, 12, 4, 7, 0));
-            cusdetails_sut_9 = new CustomerDetails("Waruni Perera", "Waruni Address", 0613082022, 9, new DateTime(2015, 2, 12, 9, 7, 0));
-            cusdetails_sut_10 = new CustomerDetails("Waruna Perera", "Waruna Address", 0623082022, 10, new DateTime(2015, 2, 12, 9, 7, 0));
-            cusdetails_sut_11 = new CustomerDetails("Sanduni Perera", "Sanduni Address", 0633082022, 11, new DateTime(2015, 2, 12, 9, 7, 0));
-            cusdetails_sut_12 = new CustomerDetails("Nimal Perera", "Nimal Address", 0643082022, 12, new DateTime(2015, 2, 12, 9, 7, 0));
-            cusdetails_sut_13 = new CustomerDetails("Srimal Perera", "Srimal Address", 0653082022, 13, new DateTime(2015, 2, 12, 9, 7, 0));
-            cusdetails_sut_14 = new CustomerDetails("Sunil Perera", "Sunil Address", 0663082022, 14, new DateTime(2015, 2, 12, 9, 7, 0));
+            cusdetails_sut_1 = new CustomerDetails("Shehan Erange", "Shehan Address", 0713082022, 1, new DateTime(2015, 3, 22, 15, 0, 0), "package A");
+            cusdetails_sut_2 = new CustomerDetails("Menuka Nayanadipa", "Menuka Address", 0723082022, 2, new DateTime(2015, 3, 22, 6, 30, 0), "package A");
+            cusdetails_sut_3 = new CustomerDetails("Sachini Perera", "sachini Address", 0733082022, 3, new DateTime(2015, 3, 22, 23, 45, 0), "package A");
+            cusdetails_sut_4 = new CustomerDetails("Anuththara Perera", "Anuththara Address", 0743082022, 4, new DateTime(2015, 3, 22, 23, 45, 0), "package A");
+            cusdetails_sut_5 = new CustomerDetails("Oshiini Perera", "Oshini Address", 0753082022, 5, new DateTime(2015, 3, 22, 23, 45, 0), "package A");
+            cusdetails_sut_6 = new CustomerDetails("Sandun Perera", "Sandun Address", 0763082022, 6, new DateTime(2015, 3, 22, 23, 45, 0), "package A");
+            cusdetails_sut_7 = new CustomerDetails("Naduni Perera", "Naduni Address", 0703082022, 7, new DateTime(2015, 2, 12, 4, 7, 0), "package A");
+            cusdetails_sut_8 = new CustomerDetails("Hashini Perera", "Hashini Address", 0603082022, 8, new DateTime(2015, 2, 12, 4, 7, 0), "package A");
+            cusdetails_sut_9 = new CustomerDetails("Waruni Perera", "Waruni Address", 0613082022, 9, new DateTime(2015, 2, 12, 9, 7, 0), "package A");
+            cusdetails_sut_10 = new CustomerDetails("Waruna Perera", "Waruna Address", 0623082022, 10, new DateTime(2015, 2, 12, 9, 7, 0), "package A");
+            cusdetails_sut_11 = new CustomerDetails("Sanduni Perera", "Sanduni Address", 0633082022, 11, new DateTime(2015, 2, 12, 9, 7, 0), "package B");
+            cusdetails_sut_12 = new CustomerDetails("Nimal Perera", "Nimal Address", 0643082022, 12, new DateTime(2015, 2, 12, 9, 7, 0), "package B");
+            cusdetails_sut_13 = new CustomerDetails("Srimal Perera", "Srimal Address", 0653082022, 13, new DateTime(2015, 2, 12, 9, 7, 0), "package B");
+            cusdetails_sut_14 = new CustomerDetails("Sunil Perera", "Sunil Address", 0663082022, 14, new DateTime(2015, 2, 12, 9, 7, 0), "package B");
         }
         [Test]
         public void ForMultipleCallRecordsForOnePerson_CheckDetailsOfAPerticularCustomer_ReturntotoalPayment()

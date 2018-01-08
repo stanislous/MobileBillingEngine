@@ -3,17 +3,20 @@ using System.Collections.Generic;
 
 namespace MobileBillingEngine 
 {
-    public class BillingEngine : BillingEngingImp
+    public abstract class BillingEngine : BillingEngingImp
     {
+        public abstract double isLocalOrLongDistance(CallDetailRecords call_details);
+        public abstract int isPeakForLocalCalls(DateTime start_time, int time_duration, bool is_local);
+        public abstract double costForSeconds(DateTime start_time, int time_duration, bool is_local, double seconds);
+
         Dictionary<double, CustomerDetails> customerDetailsMap = new Dictionary<double, CustomerDetails>();
         Dictionary<int, CallDetailRecords> callDetailsRecordMap = new Dictionary<int, CallDetailRecords>();
 
-        //static int unique_customer = 0;
         static int unique_call_details = 0;
 
         public void recordCustomerDetails(CustomerDetails cus_details)
         {
-            if (customerDetailsMap.ContainsKey(cus_details.phone_number));
+            if (customerDetailsMap.ContainsKey(cus_details.phone_number)) { }
             else customerDetailsMap.Add(cus_details.phone_number, cus_details);
         }
         public void recordCallDetails(CallDetailRecords cdr_details)
@@ -31,12 +34,13 @@ namespace MobileBillingEngine
 
             foreach (var customer in customerDetailsMap)
             {
+
                 foreach (var record in callDetailsRecordMap)
                 {
-                    if (customer.Value.phone_number == record.Value.getCallingParty())
+                    if (customer.Value.phone_number == record.Value.getCallingParty()  customer.Value.package_name = record.Value.getPackage())
                     {
                         total_payment += isLocalOrLongDistance(record.Value);
-                        tax = totalTax(total_payment+100);
+                        tax = totalTax(total_payment + 100);
                         discount = totalDiscount(total_payment);
                         total_payment += tax + discount + 100;
                     }
@@ -48,7 +52,7 @@ namespace MobileBillingEngine
             return bill_set;
         }
 
-        public double isLocalOrLongDistance(CallDetailRecords call_details)
+       /* public double isLocalOrLongDistance(CallDetailRecords call_details)
         {
             double originate_number = call_details.getCallingParty();
             double recieve_number = call_details.getRecievingParty();
@@ -69,19 +73,19 @@ namespace MobileBillingEngine
 
             if ((int)originate_number / 10000000 == (int)recieve_number / 10000000) //local call
             {
-                payment += isPeakForLocalCalls(call_details.getStartingTime(), time_duration, is_local, is_per_minute);
-                payment += costForSeconds(call_details.getStartingTime(), time_duration, is_local, seconds);
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), time_duration, is_local, is_per_minute) + 
+                    costForSeconds(call_details.getStartingTime(), time_duration, is_local, seconds);
             }
             else   //long distance call
             {
                 is_local = false;
-                payment += isPeakForLocalCalls(call_details.getStartingTime(), time_duration, is_local, is_per_minute);
-                payment += costForSeconds(call_details.getStartingTime(), time_duration, is_local, seconds);
+                payment += isPeakForLocalCalls(call_details.getStartingTime(), time_duration, is_local, is_per_minute) +
+                    costForSeconds(call_details.getStartingTime(), time_duration, is_local, seconds);
             }
             return payment;
-        }
+        }*/
 
-        public int isPeakForLocalCalls(DateTime start_time, int time_duration, bool is_local, bool is_per_minute)
+       /* public int isPeakForLocalCalls(DateTime start_time, int time_duration, bool is_local, bool is_per_minute)
         {
             DateTime end_time = start_time.AddSeconds(time_duration);
             int call_charge = 0;
@@ -105,9 +109,9 @@ namespace MobileBillingEngine
                 start_time = start_time.AddMinutes(1);
             }
             return call_charge;
-        }
+        }*/
 
-        public double costForSeconds(DateTime start_time, int time_duration, bool is_local, double seconds)
+       /*public double costForSeconds(DateTime start_time, int time_duration, bool is_local, double seconds)
         {
             DateTime end_time = start_time.AddSeconds(time_duration + seconds);
             double charge_for_seconds = 0;
@@ -123,7 +127,7 @@ namespace MobileBillingEngine
                 else charge_for_seconds = (5 * seconds) / 60;
             }
             return charge_for_seconds;         
-        }
+        }*/
 
         public double totalTax(double total_payment) { return total_payment/5; } //20% tax
 

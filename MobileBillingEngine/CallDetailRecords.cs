@@ -10,6 +10,7 @@ namespace MobileBillingEngine
         private int duration_in_sec;
         private string billing_type;
         private int seconds;
+        private string package;
 
         public void setCallDuration(int duration_in_sec)
         {
@@ -65,6 +66,11 @@ namespace MobileBillingEngine
             this.seconds = seconds;
         }
 
+        public void setPacakage(string package)
+        {
+            this.package = package;
+        }
+
         public int getCallDuration()
         {
             return duration_in_sec;
@@ -93,6 +99,10 @@ namespace MobileBillingEngine
         public int getSeconds()
         {
             return seconds;
-        }        
+        }  
+        public string getPackage()
+        {
+            return package;
+        }      
     }
 }
