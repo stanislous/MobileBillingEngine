@@ -144,8 +144,15 @@ namespace MobileBillingEngine
          }*/
 
 
+        public bool isPeakHours(int start_hour, int end_hour)
+        {
+            if (start_hour >= 8 && end_hour < 20)
+                return true;
+            else return false;
+        }
+
         public abstract int monthlyRental();
         public double totalTax(double total_payment) { return total_payment/5; } //20% tax
-        public double totalDiscount(double total_payment) { return /*total_payment / 20*/0; }//0% discount       
+        public abstract double totalDiscount(double total_payment);//0% discount       
     }
 }

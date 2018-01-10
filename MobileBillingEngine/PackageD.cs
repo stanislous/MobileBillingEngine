@@ -12,7 +12,7 @@ namespace MobileBillingEngine
 
             while (start_time != end_time)
             {
-                if (start_time.Hour >= 8 && start_time.Hour < 20) // Peak Hours
+                if (isPeakHours(start_time.Hour, start_time.Hour)) // Peak Hours
                 {
                     if (is_local == true) call_charge += 3;  // Peak for Local calls 
                     else call_charge += 5;  // Peak for Long Distance calls
@@ -33,19 +33,20 @@ namespace MobileBillingEngine
             DateTime end_time = start_time.AddSeconds(time_duration + seconds);
             double charge_for_seconds = 0;
 
-            if (end_time.Hour >= 8 && end_time.Hour < 20) // Peak Hours
+            if (isPeakHours(start_time.Hour, start_time.Hour)) // Peak Hours
             {
-                if (is_local == true) charge_for_seconds = (3 * seconds) / 60;
+                if (is_local) charge_for_seconds = (3 * seconds) / 60;
                 else charge_for_seconds = (5 * seconds) / 60;
             }
             else     // Off Peak Hours
             {
-                if (is_local == true) charge_for_seconds = (2 * seconds) / 60;
+                if (is_local) charge_for_seconds = (2 * seconds) / 60;
                 else charge_for_seconds = (4 * seconds) / 60;
             }
             return charge_for_seconds;
         }
 
         public override int monthlyRental() { return 300; }
+        public override double totalDiscount(double total_payment) { return 0; }
     }
 }
