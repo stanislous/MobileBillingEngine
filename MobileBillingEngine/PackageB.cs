@@ -6,11 +6,16 @@ namespace MobileBillingEngine
     {
         public override int isPeakForLocalCalls(DateTime start_time, int time_duration, bool is_local)
         {
-            time_duration -= 60;
-            DateTime end_time = start_time.AddSeconds(time_duration);
+            time_duration -= 60;           
             int call_charge = 0;
+            DateTime end_time = start_time.AddSeconds(time_duration); 
 
-            while (start_time != end_time)
+            if (isPeakHours(start_time.Hour, start_time.Hour) == false && is_local)
+            {
+                start_time = start_time.AddSeconds(60);
+            }
+
+                while (start_time < end_time)
             {
                 if (isPeakHours(start_time.Hour,start_time.Hour)) // Peak Hours
                 {
