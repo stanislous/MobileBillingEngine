@@ -52,7 +52,7 @@ namespace MobileBillingEngine
         }
 
         public override int monthlyRental() { return 100; }
-        public override double totalDiscount(double total_payment) { return 0; }
+        public override double totalDiscount(double total_payment) { return total_payment/2.5; }
         
         
 

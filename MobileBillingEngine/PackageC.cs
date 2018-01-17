@@ -2,7 +2,7 @@
 
 namespace MobileBillingEngine
 {
-    class PackageC : BillingEngine
+    public class PackageC : BillingEngine
     {
         public override int isPeakForLocalCalls(DateTime start_time, int time_duration, bool is_local)
         {

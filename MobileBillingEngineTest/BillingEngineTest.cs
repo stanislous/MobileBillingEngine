@@ -201,7 +201,7 @@ namespace MobileBillingEngineTest
             package_a.recordCallDetails(cdr_sut_1);
             package_a.recordCallDetails(cdr_sut_2);
             package_a.recordCallDetails(cdr_sut_3);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0723082022", 290.4 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0723082022", 230.4 } };
 
             //act 
             var result = package_a.generateBills();
@@ -215,7 +215,7 @@ namespace MobileBillingEngineTest
                //arrange
                package_a.recordCustomerDetails(cusdetails_sut_3);
                package_a.recordCallDetails(cdr_sut_4);
-               Dictionary<string, double> expected = new Dictionary<string, double>() { { "0733082022", 127.2 } };
+               Dictionary<string, double> expected = new Dictionary<string, double>() { { "0733082022", 124.8 } };
                
                //act 
                var result = package_a.generateBills();
@@ -230,7 +230,7 @@ namespace MobileBillingEngineTest
             package_a.recordCustomerDetails(cusdetails_sut_4);
             package_a.recordCallDetails(cdr_sut_5);
 
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0743082022", 127.2 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0743082022", 124.8 } };
 
             //act 
             var result = package_a.generateBills();
@@ -244,7 +244,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_5);
             package_a.recordCallDetails(cdr_sut_6);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0753082022", 132 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0753082022", 128 } };
 
             //act 
             var result = package_a.generateBills();
@@ -258,7 +258,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_6);
             package_a.recordCallDetails(cdr_sut_7);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 129.6 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 126.4 } };
             
             //act 
             var result = package_a.generateBills();
@@ -272,7 +272,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_7);
             package_a.recordCallDetails(cdr_sut_8);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 168 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 152 } };
 
             //act 
             var result = package_a.generateBills();
@@ -286,7 +286,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_8);
             package_a.recordCallDetails(cdr_sut_9);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 168 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 152 } };
 
             //act 
             var result = package_a.generateBills();
@@ -300,7 +300,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_9);
             package_a.recordCallDetails(cdr_sut_10);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0613082022", 216 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0613082022", 184 } };
 
             //act 
             var result = package_a.generateBills();
@@ -314,7 +314,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_10);
             package_a.recordCallDetails(cdr_sut_11);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0623082022", 216 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0623082022", 184 } };
 
             //act 
             var result = package_a.generateBills();
@@ -328,7 +328,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_11);
             package_b.recordCallDetails(cdr_sut_12);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 132 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 128 } };
 
             //act 
             var result = package_b.generateBills();
@@ -342,7 +342,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_12);
             package_b.recordCallDetails(cdr_sut_13);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 124.8 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 123.2 } };
 
             //act 
             var result = package_b.generateBills();
@@ -356,7 +356,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_13);
             package_b.recordCallDetails(cdr_sut_14);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 203.4 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 175.6 } };
 
             //act 
             var result = package_b.generateBills();
@@ -370,7 +370,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_14);
             package_b.recordCallDetails(cdr_sut_15);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 258 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 212 } };
 
             //act 
             var result = package_b.generateBills();

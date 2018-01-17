@@ -50,8 +50,8 @@ namespace MobileBillingEngine
                     {
                         total_payment += reference.isLocalOrLongDistance(record.Value);
                         tax = totalTax(total_payment + reference.monthlyRental());
-                        discount = totalDiscount(total_payment);
-                        total_payment += tax + discount + reference.monthlyRental();
+                        discount = reference.totalDiscount(total_payment);
+                        total_payment += tax + reference.monthlyRental() - discount;
                     }
                 }
                 bill_set.Add("0"+ customer.Value.phone_number.ToString(), total_payment);
