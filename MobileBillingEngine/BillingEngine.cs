@@ -55,7 +55,7 @@ namespace MobileBillingEngine
                     }
                 }
                 bill_set.Add("0"+ customer.Value.phone_number.ToString(), total_payment);
-                BillInformation bill_info = new BillInformation(customer.Value.full_name, customer.Value.phone_number, customer.Value.billing_address, total_payment-tax-discount-100, discount, tax, 100, total_payment);
+                BillInformation bill_info = new BillInformation(customer.Value.full_name, customer.Value.phone_number, customer.Value.billing_address, total_payment-tax-discount-reference.monthlyRental(), discount, tax, reference.monthlyRental(), total_payment);
                 total_payment = 0;
             }
             return bill_set;

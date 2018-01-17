@@ -391,7 +391,7 @@ namespace MobileBillingEngineTest
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 364.8 } };
 
             //act 
-            var result = package_a.generateBills();
+            var result = package_c.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -402,10 +402,10 @@ namespace MobileBillingEngineTest
             //arrange
             package_c.recordCustomerDetails(cusdetails_sut_16);
             package_c.recordCallDetails(cdr_sut_8);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 384 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 382.8 } };
 
             //act 
-            var result = package_a.generateBills();
+            var result = package_c.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -416,7 +416,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_c.recordCustomerDetails(cusdetails_sut_17);
             package_c.recordCallDetails(cdr_sut_9);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 384 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 382.8 } };
 
             //act 
             var result = package_c.generateBills();
