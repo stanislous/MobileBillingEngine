@@ -50,7 +50,7 @@ namespace MobileBillingEngine
                     {
                         total_payment += reference.isLocalOrLongDistance(record.Value);
                         tax = totalTax(total_payment + reference.monthlyRental());
-                        discount = reference.totalDiscount(total_payment);
+                        if(total_payment > 1000) discount = reference.totalDiscount(total_payment);
                         total_payment += tax + reference.monthlyRental() - discount;
                     }
                 }

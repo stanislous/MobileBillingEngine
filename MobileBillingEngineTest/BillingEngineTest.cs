@@ -50,12 +50,16 @@ namespace MobileBillingEngineTest
 
         private PackageA package_a;
         private PackageB package_b;
+        private PackageC package_c;
+        private PackageD package_d;
 
         [SetUp]
         public void Setup()
         {
             package_a = new PackageA();
             package_b = new PackageB();
+            package_c = new PackageC();
+            package_d = new PackageD();
 
             ///////////////////////////Call Record Details//////////////////////////////
 
@@ -201,7 +205,7 @@ namespace MobileBillingEngineTest
             package_a.recordCallDetails(cdr_sut_1);
             package_a.recordCallDetails(cdr_sut_2);
             package_a.recordCallDetails(cdr_sut_3);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0723082022", 230.4 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0723082022", 290.4 } };
 
             //act 
             var result = package_a.generateBills();
@@ -215,7 +219,7 @@ namespace MobileBillingEngineTest
                //arrange
                package_a.recordCustomerDetails(cusdetails_sut_3);
                package_a.recordCallDetails(cdr_sut_4);
-               Dictionary<string, double> expected = new Dictionary<string, double>() { { "0733082022", 124.8 } };
+               Dictionary<string, double> expected = new Dictionary<string, double>() { { "0733082022", 127.2 } };
                
                //act 
                var result = package_a.generateBills();
@@ -230,7 +234,7 @@ namespace MobileBillingEngineTest
             package_a.recordCustomerDetails(cusdetails_sut_4);
             package_a.recordCallDetails(cdr_sut_5);
 
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0743082022", 124.8 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0743082022", 127.2 } };
 
             //act 
             var result = package_a.generateBills();
@@ -244,7 +248,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_5);
             package_a.recordCallDetails(cdr_sut_6);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0753082022", 128 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0753082022", 132 } };
 
             //act 
             var result = package_a.generateBills();
@@ -258,7 +262,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_6);
             package_a.recordCallDetails(cdr_sut_7);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 126.4 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 129.6 } };
             
             //act 
             var result = package_a.generateBills();
@@ -272,7 +276,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_7);
             package_a.recordCallDetails(cdr_sut_8);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 152 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 168 } };
 
             //act 
             var result = package_a.generateBills();
@@ -286,7 +290,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_8);
             package_a.recordCallDetails(cdr_sut_9);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 152 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 168 } };
 
             //act 
             var result = package_a.generateBills();
@@ -300,7 +304,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_9);
             package_a.recordCallDetails(cdr_sut_10);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0613082022", 184 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0613082022", 216 } };
 
             //act 
             var result = package_a.generateBills();
@@ -314,7 +318,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_a.recordCustomerDetails(cusdetails_sut_10);
             package_a.recordCallDetails(cdr_sut_11);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0623082022", 184 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0623082022", 216 } };
 
             //act 
             var result = package_a.generateBills();
@@ -328,7 +332,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_11);
             package_b.recordCallDetails(cdr_sut_12);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 128 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 132 } };
 
             //act 
             var result = package_b.generateBills();
@@ -342,7 +346,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_12);
             package_b.recordCallDetails(cdr_sut_13);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 123.2 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 124.8 } };
 
             //act 
             var result = package_b.generateBills();
@@ -356,7 +360,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_13);
             package_b.recordCallDetails(cdr_sut_14);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 175.6 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 203.4 } };
 
             //act 
             var result = package_b.generateBills();
@@ -370,7 +374,7 @@ namespace MobileBillingEngineTest
             //arrange
             package_b.recordCustomerDetails(cusdetails_sut_14);
             package_b.recordCallDetails(cdr_sut_15);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 212 } };
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 258 } };
 
             //act 
             var result = package_b.generateBills();
@@ -382,8 +386,8 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinuteAtPackageC_LongDistanceOffPeakHoursCallOnly_ReturntotoalPayment()
         {
             //arrange
-            package_a.recordCustomerDetails(cusdetails_sut_15);
-            package_a.recordCallDetails(cdr_sut_7);
+            package_c.recordCustomerDetails(cusdetails_sut_15);
+            package_c.recordCallDetails(cdr_sut_7);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0763082022", 364.8 } };
 
             //act 
@@ -396,8 +400,8 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinuteAtPackageC_LocalFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            package_a.recordCustomerDetails(cusdetails_sut_16);
-            package_a.recordCallDetails(cdr_sut_8);
+            package_c.recordCustomerDetails(cusdetails_sut_16);
+            package_c.recordCallDetails(cdr_sut_8);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0703082022", 384 } };
 
             //act 
@@ -410,12 +414,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinuteAtPackageC_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            package_a.recordCustomerDetails(cusdetails_sut_17);
-            package_a.recordCallDetails(cdr_sut_9);
+            package_c.recordCustomerDetails(cusdetails_sut_17);
+            package_c.recordCallDetails(cdr_sut_9);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0603082022", 384 } };
 
             //act 
-            var result = package_a.generateBills();
+            var result = package_c.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -424,12 +428,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinuteAtPackageC_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            package_a.recordCustomerDetails(cusdetails_sut_18);
-            package_a.recordCallDetails(cdr_sut_10);
+            package_c.recordCustomerDetails(cusdetails_sut_18);
+            package_c.recordCallDetails(cdr_sut_10);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0613082022", 408 } };
 
             //act 
-            var result = package_a.generateBills();
+            var result = package_c.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -438,12 +442,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerMinuteAtPackageC_LongDistanceFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            package_a.recordCustomerDetails(cusdetails_sut_19);
-            package_a.recordCallDetails(cdr_sut_11);
+            package_c.recordCustomerDetails(cusdetails_sut_19);
+            package_c.recordCallDetails(cdr_sut_11);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0623082022", 408 } };
 
             //act 
-            var result = package_a.generateBills();
+            var result = package_c.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -452,12 +456,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecondAtPackageD_LocalPeakHoursCallsOnly_ReturntotoalPayment()
         {
             //arrange
-            package_b.recordCustomerDetails(cusdetails_sut_20);
-            package_b.recordCallDetails(cdr_sut_12);
+            package_d.recordCustomerDetails(cusdetails_sut_20);
+            package_d.recordCallDetails(cdr_sut_12);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0633082022", 369 } };
 
             //act 
-            var result = package_b.generateBills();
+            var result = package_d.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -466,12 +470,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecondAtPackageD_LocalOffPeakHoursCallsOnly_ReturntotoalPayment()
         {
             //arrange
-            package_b.recordCustomerDetails(cusdetails_sut_21);
-            package_b.recordCallDetails(cdr_sut_13);
+            package_d.recordCustomerDetails(cusdetails_sut_21);
+            package_d.recordCallDetails(cdr_sut_13);
             Dictionary<string, double> expected = new Dictionary<string, double>() { { "0643082022", 365.6 } };
 
             //act 
-            var result = package_b.generateBills();
+            var result = package_d.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -480,12 +484,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecondAtPackageD_LocalFromOffPeakToPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            package_b.recordCustomerDetails(cusdetails_sut_22);
-            package_b.recordCallDetails(cdr_sut_14);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 422 } };
+            package_d.recordCustomerDetails(cusdetails_sut_22);
+            package_d.recordCallDetails(cdr_sut_14);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0653082022", 422.00000000000006 } };
 
             //act 
-            var result = package_b.generateBills();
+            var result = package_d.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);
@@ -494,12 +498,12 @@ namespace MobileBillingEngineTest
         public void FindTheCallChargeForPerSecondAtPackageD_LongDistanceFromPeakToOffPeakHoursCall_ReturntotoalPayment()
         {
             //arrange
-            package_b.recordCustomerDetails(cusdetails_sut_23);
-            package_b.recordCallDetails(cdr_sut_15);
-            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 473 } };
+            package_d.recordCustomerDetails(cusdetails_sut_23);
+            package_d.recordCallDetails(cdr_sut_15);
+            Dictionary<string, double> expected = new Dictionary<string, double>() { { "0663082022", 473.00000000000006 } };
 
             //act 
-            var result = package_b.generateBills();
+            var result = package_d.generateBills();
 
             //assert
             Assert.AreEqual(expected, result);

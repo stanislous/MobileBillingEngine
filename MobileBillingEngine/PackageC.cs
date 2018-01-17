@@ -9,7 +9,12 @@ namespace MobileBillingEngine
             DateTime end_time = start_time.AddSeconds(time_duration);
             int call_charge = 0;
 
-            while (start_time != end_time)
+            if (is_local)
+            {
+                start_time = start_time.AddSeconds(60);
+            }
+
+            while (start_time < end_time)
             {
                 if (start_time.Hour >= 9 && start_time.Hour < 18) // Peak Hours
                 {
